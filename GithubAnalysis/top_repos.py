@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jan  7 22:03:04 2024
+Created in Jan   2024
 
 @author: saeideh
 """
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import logging
 
 
-def get_top_repos(N, test=False):
+def top_repos(N, test=False):
     # Setting up logging
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger()
