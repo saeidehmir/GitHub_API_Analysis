@@ -1,0 +1,10 @@
+import pytest
+
+def test_load_config():
+    analysis = Analysis('config.yml')
+    system_config = analysis.system_config
+    user_config = analysis.user_config
+
+    assert 'github_api_token' in system_config
+    assert 'plot_color' in user_config
+    assert 'analysis_type' in analysis.analysis_config
