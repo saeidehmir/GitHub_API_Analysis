@@ -31,6 +31,19 @@ class Analysis:
             raise
 
     def load_data(self):
+        ''' Retrieve data from the GitHub API
+        This function makes an HTTPS request to the GitHub API and retrieves your selected data. The data is
+        stored in the Analysis object.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        None
+        
+        '''
         # Setting up GitHub API interaction
         headers = {"Authorization": "Bearer " + self.system_config["github_api_token"]}
         # Fetch top N starred repos
