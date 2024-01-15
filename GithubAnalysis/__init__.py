@@ -7,3 +7,5 @@ Created in Jan   2024
 """
 
 from .analysis import Analysis
+from .top_repos import top_repos
+from .top_users import top_users

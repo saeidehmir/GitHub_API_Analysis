@@ -1,11 +1,11 @@
-# GitHub Top Repositories Fetcher
+# GitHub API Analysis
 Author: Saeideh Mirjalili
 
-A simple Python script to fetch and visualize the top N starred repositories on GitHub.
+A Python package to fetch and visualize the top N starred repositories or top N followed users on GitHub.
 
 ## Description
 
-The `get_top_repos(N)` function fetches the top N repositories on GitHub sorted by the number of stars. It utilizes the GitHub API to retrieve repository data and then visualizes the top repositories and their star counts using a horizontal bar chart. The script includes comprehensive error handling, logging, and user input validation for robust performance.
+Depending on the type of analysis, the package plots top N repositories on GitHub sorted by the number of stars, or top N users with the highest number of followers. It utilizes the GitHub API to retrieve repository data and then visualizes the results. The scripts include comprehensive error handling, logging, and user input validation for robust performance.
 
 ## Getting Started
 
@@ -24,12 +24,23 @@ Ensure you have the above dependencies installed in your Python environment.
 - Navigate into the repository folder.
 
 or use the following command:
-pip install git+https://github.com/saeidehmir/TopGithubRepos.git
+pip install git+https://github.com/saeidehmir/GitHub_API_Analysis.git
+
+### Running Tests
+
+To run the tests, navigate to the test directory and execute:
+python test_my_package.py
 
 
-### Executing Program
+### Example
 
 - Run the script using Python:
 
   ```bash
-  python get_top_repos.py
+!pip install git+https://github.com/saeidehmir/GitHub_API_Analysis.git
+from GitHub_API_Analysis import Analysis
+
+analysis_obj = Analysis('./configs/config.yml')
+analysis_obj.load_data()
+analysis_obj.compute_analysis()
+analysis_obj.plot_data()

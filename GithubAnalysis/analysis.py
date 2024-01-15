@@ -6,12 +6,13 @@ Created in Jan   2024
 @author: saeideh
 """
 
-from top_repos import top_repos
-from top_users import top_users
+from .top_repos import top_repos
+from .top_users import top_users
 import logging
 import yaml
 import requests
 import matplotlib.pyplot as plt
+import sys
 
 
 class Analysis:
@@ -47,6 +48,9 @@ class Analysis:
         self.data = None
         self.starred_repos_data = None
         self.top_users_data = None
+        if self.analysis_config["data_source"] != "GitHub":
+            print("Currently, only GitHub analysis is supported")
+            sys.exit(0)
 
     def load_config(self, config_file):
         try:
@@ -131,30 +135,31 @@ class Analysis:
 
         # data plotting
         analysis_type = self.analysis_config.get('analysis_type')
+        figure_size = self.system_config.get('figure_size', [14, 8])
+        figsize = (figure_size[0], figure_size[1])
         if analysis_type == 'repo':
             # Visualization with Matplotlib
-            plt.figure(figsize=(14, 8))
+            plt.figure(figsize=figsize)
             plt.subplot(2, 1, 1)
             repo_names, repo_stars = zip(*self.data)
-            plt.barh(repo_names, repo_stars, color='skyblue')
-            plt.xlabel('Stars')
-            plt.title(f'Top {self.user_config["N_repos"]} Starred GitHub Repositories')
+            plt.barh(repo_names, repo_stars, color=self.system_config["plot_color"])
+            plt.xlabel(self.system_config["plot_x_axis_title"])
+            plt.ylabel(self.system_config["plot_y_axis_title"])
+            plt.title(self.system_config["plot_title"])
             plt.tight_layout()
             plt.show()
         if analysis_type == 'user':
             # Visualization with Matplotlib
-            plt.figure(figsize=(14, 8))
-
+            plt.figure(figsize=figsize)
             user_logins, user_followers = zip(*self.data)
             plt.subplot(2, 1, 2)
-            plt.barh(user_logins, range(1, self.user_config["N_users"]+1), color='lightgreen')  # Placeholder for followers
-            plt.xlabel('Followers (Placeholder)')
-            plt.title(f'Top {self.user_config["N_users"]} Followed GitHub Users')
+            plt.barh(user_logins, range(1, self.user_config["N_users"]+1), color=self.system_config["plot_color"])  # Placeholder for followers
+            plt.xlabel(self.system_config["plot_x_axis_title"])
+            plt.ylabel(self.system_config["plot_y_axis_title"])
+            plt.title(self.system_config["plot_title"])
             plt.tight_layout()
-
             plt.show()
-            pass
 
-        if save_path:
-            plt.savefig(save_path)
+        if self.system_config.get('default_save_path'):
+            plt.savefig(self.system_config.get('default_save_path'))
         plt.show()
