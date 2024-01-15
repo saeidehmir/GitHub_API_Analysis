@@ -51,7 +51,10 @@ class Analysis:
                                   self.starred_repos_data,
                                   test=False)
         elif analysis_type == 'user':
-            self.data = top_users(self.top_users_data, test=False)
+            self.data = top_users(self.user_config["N_repos"],
+                                  self.system_config["github_api_token"],
+                                  self.top_users_data,
+                                  test=False)
         else:
             logging.error(f"Invalid analysis type: {analysis_type}")
             raise ValueError(f"Invalid analysis type: {analysis_type}")
@@ -73,6 +76,17 @@ class Analysis:
             plt.tight_layout()
             plt.show()
         if analysis_type == 'user':
+            # Visualization with Matplotlib
+            plt.figure(figsize=(14, 8))
+
+            user_logins, user_followers = zip(*self.data)
+            plt.subplot(2, 1, 2)
+            plt.barh(user_logins, range(1, self.user_config["N_users"]+1), color='lightgreen')  # Placeholder for followers
+            plt.xlabel('Followers (Placeholder)')
+            plt.title(f'Top {self.user_config["N_users"]} Followed GitHub Users')
+            plt.tight_layout()
+
+            plt.show()
             pass
 
         if save_path:
