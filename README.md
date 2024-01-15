@@ -37,10 +37,11 @@ python test_my_package.py
 - Run the script using Python:
 
   ```bash
-!pip install git+https://github.com/saeidehmir/GitHub_API_Analysis.git
-from GitHub_API_Analysis import Analysis
+  !pip install git+https://github.com/saeidehmir/GitHub_API_Analysis.git
+  from from GithubAnalysis import Analysis
 
-analysis_obj = Analysis('./configs/config.yml')
-analysis_obj.load_data()
-analysis_obj.compute_analysis()
-analysis_obj.plot_data()
+  analysis_obj = Analysis('./configs/config.yml')
+  analysis_obj.load_data()
+  analysis_obj.compute_analysis()
+  analysis_obj.plot_data()
+  ```
