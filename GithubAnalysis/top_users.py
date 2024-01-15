@@ -16,7 +16,7 @@ def top_users(N, token, users_data, test=False):
     if test is True:
         results = []
         for i in range(N):
-            results.append(("MyRepo", 1000))
+            results.append(("MyUser", 1000))
         return results
     try:
         if not token:

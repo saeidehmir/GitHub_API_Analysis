@@ -11,6 +11,7 @@ from top_users import top_users
 import logging
 import yaml
 import requests
+import matplotlib.pyplot as plt
 
 
 class Analysis:
@@ -82,6 +83,20 @@ class Analysis:
 
 
     def compute_analysis(self):
+        '''Analyze previously-loaded data.
+        This function runs an analytical measure of your choice (mean, median, linear regression, etc...)
+        and returns the data in a format of your choice.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        None
+        Note: analysis_output is saved into data attribute
+        
+        '''
         analysis_type = self.analysis_config.get('analysis_type')
         if analysis_type == 'repo':
             self.data = top_repos(self.user_config["N_repos"],
@@ -99,7 +114,20 @@ class Analysis:
 
 
     def plot_data(self, save_path=None):
-        import matplotlib.pyplot as plt
+        ''' Analyze and plot data
+        Generates a plot, display it to screen, and save it to the path in the parameter `save_path`, or 
+        the path from the configuration file if not specified.
+        
+        Parameters
+        ----------
+        save_path : str, optional
+            Save path for the generated figure
+        
+        Returns
+        -------
+        fig : matplotlib.Figure
+        
+        '''
 
         # data plotting
         analysis_type = self.analysis_config.get('analysis_type')
