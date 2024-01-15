@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='TopGithubRepos',
-    version='0.3.0',
+    name='GitHub_API_Analysis',
+    version='0.1.0',
     author='Saeideh Mirjalili',
-    packages=['TopGithubRepos'],
+    packages=['GitHub_API_Analysis'],
 )
