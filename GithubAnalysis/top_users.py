@@ -68,3 +68,26 @@ def top_users(N, test=False):
         logger.error(f"An unexpected error occurred: {e}")
 
     return list(zip(repo_names, repo_stars))
+
+
+"""
+user_logins = [user['login'] for user in users]
+user_followers = [user['followers_url'] for user in users]  # This gives URL, you might need additional API call to get count
+
+# Visualization with Matplotlib
+plt.figure(figsize=(14, 8))
+
+plt.subplot(2, 1, 1)
+plt.barh(repo_names, repo_stars, color='skyblue')
+plt.xlabel('Stars')
+plt.title('Top 10 Starred GitHub Repositories')
+plt.tight_layout()
+
+plt.subplot(2, 1, 2)
+plt.barh(user_logins, range(1, 11), color='lightgreen')  # Placeholder for followers
+plt.xlabel('Followers (Placeholder)')
+plt.title('Top 10 Followed GitHub Users')
+plt.tight_layout()
+
+plt.show()
+"""

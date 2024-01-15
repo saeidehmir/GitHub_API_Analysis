@@ -46,7 +46,10 @@ class Analysis:
     def compute_analysis(self):
         analysis_type = self.analysis_config.get('analysis_type')
         if analysis_type == 'repo':
-            self.data = top_repos(self.starred_repos_data, test=False)
+            self.data = top_repos(self.user_config["N_repos"],
+                                  self.system_config["github_api_token"],
+                                  self.starred_repos_data,
+                                  test=False)
         elif analysis_type == 'user':
             self.data = top_users(self.top_users_data, test=False)
         else:
@@ -63,7 +66,7 @@ class Analysis:
             # Visualization with Matplotlib
             plt.figure(figsize=(14, 8))
             plt.subplot(2, 1, 1)
-            repo_names, repo_stars = zip(self.data)
+            repo_names, repo_stars = zip(*self.data)
             plt.barh(repo_names, repo_stars, color='skyblue')
             plt.xlabel('Stars')
             plt.title(f'Top {self.user_config["N_repos"]} Starred GitHub Repositories')
