@@ -14,10 +14,10 @@ import requests
 
 
 class Analysis:
-    def __init__(self):
+    def __init__(self, analysis_config):
         self.system_config = self.load_config('configs/system_config.yml')
         self.user_config = self.load_config('configs/user_config.yml')
-        self.analysis_config = self.load_config('configs/config.yml')
+        self.analysis_config = self.load_config(analysis_config)
         self.data = None
         self.starred_repos_data = None
         self.top_users_data = None
@@ -46,22 +46,31 @@ class Analysis:
     def compute_analysis(self):
         analysis_type = self.analysis_config.get('analysis_type')
         if analysis_type == 'repo':
-            pass
-            #top_repos(N, token, test=False)
-        elif analysis_type == 'median':
-            pass
-            #top_users(N, token, test=False)
+            self.data = top_repos(self.starred_repos_data, test=False)
+        elif analysis_type == 'user':
+            self.data = top_users(self.top_users_data, test=False)
         else:
             logging.error(f"Invalid analysis type: {analysis_type}")
             raise ValueError(f"Invalid analysis type: {analysis_type}")
 
-        # Return the analysis output
 
     def plot_data(self, save_path=None):
         import matplotlib.pyplot as plt
 
-        # Implement data plotting here
-        # Use self.data for plotting
+        # data plotting
+        analysis_type = self.analysis_config.get('analysis_type')
+        if analysis_type == 'repo':
+            # Visualization with Matplotlib
+            plt.figure(figsize=(14, 8))
+            plt.subplot(2, 1, 1)
+            repo_names, repo_stars = zip(self.data)
+            plt.barh(repo_names, repo_stars, color='skyblue')
+            plt.xlabel('Stars')
+            plt.title(f'Top {self.user_config["N_repos"]} Starred GitHub Repositories')
+            plt.tight_layout()
+            plt.show()
+        if analysis_type == 'user':
+            pass
 
         if save_path:
             plt.savefig(save_path)
