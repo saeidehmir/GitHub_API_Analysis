@@ -20,7 +20,7 @@ Ensure you have the above dependencies installed in your Python environment.
 
 ### Installing
 
-- Clone this repository using `git clone [repository URL]`.
+- Clone this repository using `git clone https://github.com/saeidehmir/GitHub_API_Analysis.git`.
 - Navigate into the repository folder.
 
 or use the following command:
