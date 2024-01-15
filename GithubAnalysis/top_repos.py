@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import logging
 
 
-def top_repos(N, test=False):
+def top_repos(N, token, test=False):
     # Setting up logging
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger()
@@ -22,10 +22,9 @@ def top_repos(N, test=False):
             results.append(("MyRepo", 1000))
         return results
     try:
-        token = input("Please provide your GitHub token:\n")
         if not token:
             raise ValueError("GitHub token is missing. Please provide a valid token.")
-    
+
         # Setting up GitHub API interaction
         url = "https://api.github.com/user"
         headers = {"Authorization": "Bearer " + token}

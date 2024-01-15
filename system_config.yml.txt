@@ -1,7 +1,0 @@
-github_api_token: YOUR_GITHUB_API_TOKEN
-plot_color: blue
-plot_title: GitHub Data Analysis
-plot_x_axis_title: X-Axis
-plot_y_axis_title: Y-Axis
-figure_size: [10, 6]
-default_save_path: ./output/

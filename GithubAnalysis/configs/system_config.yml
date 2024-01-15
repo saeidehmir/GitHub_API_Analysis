@@ -1,0 +1,8 @@
+github_api_token: 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
+plot_color: blue
+plot_title: GitHub Data Analysis
+plot_x_axis_title: X-Axis
+plot_y_axis_title: Y-Axis
+figure_size: [10, 6]
+default_save_path: ./output/A2296
+
