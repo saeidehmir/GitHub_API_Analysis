@@ -14,6 +14,31 @@ import requests
 
 
 class Analysis:
+    ''' Load config into an Analysis object
+
+    Load system-wide configuration from `configs/system_config.yml`, user configuration from
+    `configs/user_config.yml`, and the specified analysis configuration file
+    
+    Parameters
+    ----------
+    analysis_config : str
+        Path to the analysis/job-specific configuration file
+    
+    Returns
+    -------
+    analysis_obj : Analysis
+        Analysis object containing consolidated parameters from the configuration files
+    
+    Notes
+    -----
+    The configuration files should include parameters for:
+        * GitHub API token
+        * Plot color
+        * Plot title
+        * Plot x and y axis titles
+        * Figure size
+        * Default save path
+    '''
     def __init__(self, analysis_config):
         self.system_config = self.load_config('configs/system_config.yml')
         self.user_config = self.load_config('configs/user_config.yml')
